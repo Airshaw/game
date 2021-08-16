@@ -21,3 +21,4 @@ class Player(pygame.sprite.Sprite):
         self.rect.x -= self.velocity
         
 #hjds
+fdfdsfsd
