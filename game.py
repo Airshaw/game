@@ -19,11 +19,12 @@ class Game:
             self.screen.blit(self.background, (0, -200))
             # print(game.pressed)
             self.screen.blit(self.player.image, self.player.rect)
-            # print(player.rect)
 
-            if self.pressed.get(pygame.K_d) and self.player.rect.x + self.player.rect.width() < self.screen.get_width():
+            game.player.all_projectiles.draw(screen)
+
+            if self.pressed.get(pygame.K_d) and self.player.rect.x + self.player.rect.width < self.screen.get_width():
                 self.player.move_right()
-            elif self.pressed.get(pygame.K_q) and self.player.rect.x > 5:
+            elif self.pressed.get(pygame.K_q) and self.player.rect.x > 25:
                 self.player.move_left()
 
             pygame.display.flip()
@@ -36,6 +37,10 @@ class Game:
 
                 elif event.type == pygame.KEYDOWN:
                     self.pressed[event.key] = True
+
+                    if event.key == pygame.K_SPACE:
+                        game.player.lunch_projectile()
+
                 elif event.type == pygame.KEYUP:
                     self.pressed[event.key] = False
             clock.tick(60)
